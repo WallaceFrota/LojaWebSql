@@ -34,6 +34,33 @@
                 </div>
         </nav>
 </div>
+
+<!-- Modal inserir cursos-->
+<div class="modal fade" id="tela_inserir" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="TituloModalCentralizado">INSERIR CURSOS - ADMIN</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar" onclick="modalClose()">
+                <h6 class="pt-1">VOLTAR</h6>
+            </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-dark muted">Nome do curso:</h5>
+                    <input type="text" class="form-control" id="curso_name" placeholder="nome do curso"><br>
+                <h5 class="text-dark muted">Descrição do curso:</h5>
+                    <input type="text" class="form-control" id="curso_desc" placeholder="breve descrição"><br>
+                <h5 class="text-dark muted">QTD de vagas disponibilizadas:</h5>
+                    <input type="number" class="form-control" id="curso_qtd" placeholder="vagas disponíveis"><br>
+                <h5 class="text-dark muted">Preço do curso:</h5>
+                    <input type="number" class="form-control" id="curso_price" placeholder="preço do curso R$">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary text-white form-control mb-4" onclick="cursos_insert()">Inserir</button>
+            </div>
+        </div>
+        </div>
+</div>
 <!-- scripts-->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
