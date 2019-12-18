@@ -106,6 +106,35 @@
     </div>
 </div>
 
+<!-- Modal compras feitas-->
+<div class="modal fade bd-example-modal-lg" id="compras_feitas" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="TituloModalCentralizado">COMPRAS REALIZADAS <i class="fa fa-check pl-1"></i></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar" onclick="modalClose()">
+                <h6 class="pt-1">VOLTAR</h6>
+            </button>
+            </div>
+            <div class="modal-body">
+                    <table class="table table-striped">
+                            <thead>
+                                <th>ID</th>
+                                <th>Curso</th>
+                                <th>Vagas Adquiridas</th>
+                                <th>Valor Total(R$)</th>
+                                <th>Excluir</th>
+                                <th></th>
+                            </thead>
+                            <!-- listagem de compras feitas -->
+                            <tbody id="compras_feitas_listagem">
+                            </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- funções de visulização dos cursos cadastrados na tela inicial -->
 <script>
     cursos_view();
