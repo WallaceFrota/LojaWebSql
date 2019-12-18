@@ -170,3 +170,33 @@ function curso_update_db(tx) {
     $("#tela_inserir").hide();
     $("#tela_carrinho").hide();
 }
+// chama o modal que exibe compras feitas
+function cursos_abrir_tela_compras(){
+    cursos_comprados_view();
+}
+// chama a função que exibe cursos comprados do bd
+function cursos_comprados_view() {
+    db.transaction(cursos_comprados_view_db, errorDB, successDB);
+}
+  
+//Monta a matriz com os registros da tabela Compras
+function cursos_comprados_view_db(tx) {
+    tx.executeSql('SELECT * FROM Compras', [], cursos_comprados_view_data, errorDB);
+}
+  
+//Mostra os cada curso comprado
+function cursos_comprados_view_data(tx, results) {
+    $("#compras_feitas_listagem").empty();
+    var len = results.rows.length;
+  
+    for (var i = 0; i < len; i++) {
+      $("#compras_feitas_listagem").append(
+        "<tr class='curso_item_lista'>" +
+        "<td>" + results.rows.item(i).id + "</td>" +
+        "<td><h6>" + results.rows.item(i).nome + "</h6></td>" +
+        "<td class='pl-3'><h6>" + results.rows.item(i).vagas + "</h6></td>" +
+        "<td><h6>" + results.rows.item(i).valor + ",00" + "</h6></td>" +
+        "<td><input type='button' class = 'btn btn-sm btn-danger' value ='x' onclick='excluir_curso(" + results.rows.item(i).id + ")'></td>" +
+        "</tr>");
+    }
+}
