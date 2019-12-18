@@ -136,3 +136,37 @@ function curso_exibe_db(tx) {
             }
     );
 }
+// função executada ao efetuar compra
+function curso_compra() {
+    db.transaction(curso_update_db, errorDB, successDB);
+}
+// função que realiza ação de update de estoque
+function curso_update_db(tx) {
+    var curso_id_novo = $("#curso_id_update").val(); // pegando o valor do id
+    var curso_qtd_novo = $("#curso_qtd_update").val();
+    var nome = $("#curso_nome").val();
+    var curso_preco = $("#curso_preco").val();
+    var escQtd= $("#qtdEsc").val();
+    
+    var decEstoque = curso_qtd_novo - escQtd;
+    var tot = curso_preco * escQtd;
+
+    // update do estoque na bd
+    tx.executeSql('INSERT INTO Compras (nome, valor, vagas) VALUES ("' + nome + '", ' + tot + ', ' + escQtd + ')');
+    tx.executeSql('UPDATE Cursos SET qtd = "' + decEstoque + '" WHERE id = "' + curso_id_novo + '" ');
+
+    // exibe alerta de sucesso na compra
+    $("#alert").append(
+        "<div class='alert alert-success bg-success' role='alert'>" +
+            "<h5 class='text-white'>" + "COMPRA REALIZADA COM SUCESSO!" + "</h5>" +
+         "</div>"
+    );
+
+    // telas exibição
+    // recarrega pagina após quase 1seg
+    setTimeout(function(){
+        location.reload(1);
+    }, 1000);
+    $("#tela_inserir").hide();
+    $("#tela_carrinho").hide();
+}
