@@ -91,3 +91,48 @@ function cursos_view_data(tx, results) {
         }
     }
 }
+// função abrir carrinho recebendo o parametro id do curso
+function curso_abrir_carrinho(curso_id) {
+    $("#tela_home").hide();
+    $("#tela_inserir").hide();
+    $("#tela_carrinho").show();
+
+    $("#curso_id_update").val(curso_id); // id repassado na função
+
+    curso_exibecart(); // chamando função de exibir carrinho
+
+}
+// função executada quando clicada em efetuar compra
+function curso_exibecart() {
+    db.transaction(curso_exibe_db, errorDB, successDB);
+}
+// função atualiza dados do estoque após compra
+function curso_exibe_db(tx) {
+
+    var curso_id_novo = $("#curso_id_update").val(); // pegando o valor do id
+
+    // executa ações no bd
+    tx.executeSql(
+        'SELECT * FROM Cursos WHERE id = ?', [curso_id_novo],
+            function(tx, results){
+                var nomeCartt = document.getElementById("nomeCart");
+                var descCartt = document.getElementById("descCart");
+                var qtdCartt = document.getElementById("qtdCart");
+                var valorCartt = document.getElementById("valorCart");
+    
+                for(var i = 0; i < results.rows.length; i++) {
+                    var row = results.rows.item(i);
+                    var qtdEstoque = row.qtd;
+                    var precoTot = row.preco;
+                    var nomeCurso = row.nome;
+                    nomeCartt.innerHTML += "<span class='font-weight-light'>" + row.nome + "</span>";
+                    descCartt.innerHTML += "<span class='font-weight-light'>" + row.desc + "</span>";
+                    qtdCartt.innerHTML += "<span class='font-weight-light'>" + row.qtd + "</span>";
+                    valorCartt.innerHTML += "<span class='font-weight-light'>" + row.preco + ",00" + "</span>";
+                    $("#curso_qtd_update").val(qtdEstoque);
+                    $("#curso_preco").val(precoTot);
+                    $("#curso_nome").val(nomeCurso);
+                }
+            }
+    );
+}
