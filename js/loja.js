@@ -214,3 +214,20 @@ function excluir_cursosDB(tx){
     // atualiza a tela modal com historico de cursos comprados
     cursos_comprados_view();
 }
+// função exibe subtotal no carrinho
+function subTotalCompra() {
+    var total = document.getElementById("subtot");
+
+    var escQtdSub = $(".escQtdSub").val();
+    var curso_preco_compra = $("#curso_preco").val();
+
+    var subTotal = curso_preco_compra * escQtdSub; // subtotal
+
+    console.log(subTotal)
+
+    total.innerHTML = "<span class='font-weight-normal'>" + subTotal + ",00"  + "</span>"; // mostrando subtotal
+}
+// função fecha modal e recarrega página
+function modalClose() {
+    location.reload(true);
+}
