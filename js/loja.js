@@ -200,3 +200,17 @@ function cursos_comprados_view_data(tx, results) {
         "</tr>");
     }
 }
+// exclui o curso de acordo com o id
+function excluir_curso(excluir){
+    $("#curso_id_delete").val(excluir);
+    db.transaction(excluir_cursosDB, errorDB, successDB);
+}
+  
+function excluir_cursosDB(tx){
+    var id_excluir = $("#curso_id_delete").val();
+    tx.executeSql('DELETE FROM Compras WHERE id = ' + id_excluir);
+    alert("Curso removido do histórico de compras!");
+
+    // atualiza a tela modal com historico de cursos comprados
+    cursos_comprados_view();
+}
