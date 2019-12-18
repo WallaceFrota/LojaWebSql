@@ -79,6 +79,33 @@
         </div>
 </div>
 
+<!-- Modal carrinho de compras-->
+<div class="modal fade" id="tela_carrinho" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalCentralizado">SEU CARRINHO <i class="fa fa-shopping-cart pl-1"></i></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar" onclick="modalClose()">
+            <h6 class="pt-1">VOLTAR</h6>
+        </button>
+        </div>
+        <div class="modal-body">
+                <h5 class="mb-3" id="nomeCart">Curso: </h5>
+                <h5 class="mb-3" id="descCart">Descrição: </h5>
+                <h5 class="mb-3" id="qtdCart">QTD vagas disponíveis: </h5>
+                <h5 class="mb-3" id="valorCart">Valor do curso: </h5>
+                <hr>
+                <h5 class="card-text">QTD de vagas desejadas: </h5>
+                <input type="number" class="form-control my-3 escQtdSub" id="qtdEsc" placeholder="digite sua quantidade de vagas desejadas" onkeyup="subTotalCompra()">
+                <p><h5 class="card-text">SubTotal R$:</h5> <p id="subtot"></p></p>
+        </div>
+        <div class="modal-footer">
+                <input type="button" class="btn btn-lg btn-primary form-control" data-toggle="modal" data-target=".bd-example-modal-sm" value="Efetuar compra" onclick="curso_compra()">
+        </div>
+    </div>
+    </div>
+</div>
+
 <!-- funções de visulização dos cursos cadastrados na tela inicial -->
 <script>
     cursos_view();
